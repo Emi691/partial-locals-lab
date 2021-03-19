@@ -1,0 +1,17 @@
+<%= form_for @student do |f|%>
+<%= f.label :search %>
+<%= f.text_area :name%>
+<%= f.submit%>
+<% end %>
+
+<% if !@students.empty? %>
+    <% @students.each do |student|%>
+    <% @stud = student %>
+        <%= render partial: "student", locals: {student: @stud} %>
+    <% end %>
+<% else %>
+    <% Student.all.each do |student| %>
+        <% @stud = student %>
+        <%= render partial: "student", locals: {student: @stud} %>
+    <% end %>
+<% end %>
