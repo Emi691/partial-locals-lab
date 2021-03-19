@@ -1,17 +1,14 @@
-<%= form_for @student do |f|%>
-<%= f.label :search %>
-<%= f.text_area :name%>
-<%= f.submit%>
+<%= form_tag students_path, method: :get do %>
+<%= text_field_tag :query %>
+<%= submit_tag "search" %>
 <% end %>
 
 <% if !@students.empty? %>
     <% @students.each do |student|%>
-    <% @stud = student %>
-        <%= render partial: "student", locals: {student: @stud} %>
+        <%= render partial: "student", locals: {student: student} %>
     <% end %>
 <% else %>
     <% Student.all.each do |student| %>
-        <% @stud = student %>
-        <%= render partial: "student", locals: {student: @stud} %>
+        <%= render partial: "student", locals: {student: student} %>
     <% end %>
 <% end %>
